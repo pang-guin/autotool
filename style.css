@@ -33,6 +33,20 @@ body {
     text-align: center;
 }
 
+.random-quote-button {
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.ramdom-button:hover {
+    background-color: #0056b3;
+}
 .header-button {
     font-size: 20px;
     padding: 10px 20px;
