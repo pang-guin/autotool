@@ -1,72 +1,20 @@
-
-<!-- 알림장 페이지 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>알림장</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .header {
-            padding: 20px;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-
-        .header-title {
-            font-size: 40px;
-            margin: 0;
-        }
-
-        .notice-list {
-            padding: 20px;
-        }
-
-        .notice-list ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .notice-list li {
-            margin: 10px 0;
-            font-size: 18px;
-        }
-
-        .back-button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #007BFF;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            width: 100px;
-        }
-
-        .back-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="header">
-        <h1 class="header-title">알림장</h1>
+    <div class="notepad">
+        <textarea placeholder="알림장을 작성하세요..."></textarea>
+        <div class="font-size-control">
+            <button class="font-size-increase">글자크기 증가</button>
+            <button class="font-size-decrease">글자크기 감소</button>
+        </div>
+        <button class="copy">전체 복사</button>
     </div>
-    <div class="notice-list">
-        <ul>
-            <li>알림 1: 새로운 공지가 있습니다.</li>
-            <li>알림 2: 다음 회의는 금요일 오후 2시입니다.</li>
-            <li>알림 3: 서류 제출 마감일이 다가옵니다.</li>
-        </ul>
-    </div>
-    <a href="index.html" class="back-button">돌아가기</a>
+    <script src="notice-script.js"></script>
 </body>
 </html>
