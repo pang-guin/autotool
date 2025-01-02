@@ -10,17 +10,17 @@
     <div class="header">
         <div class="header-date"></div>
         <div class="random-quote">로딩 중...</div>
-        <button class="header-button">알림장</button>
+        <button class="header-button" onclick="window.location.href='notice.html'">알림장</button>
         <button class="random-quote-button">새로운 문구</button>
     </div>
     <div class="notepad">
-        <textarea placeholder="여기에 메모를 작성하세요..."></textarea>
+        <textarea id="notepad" placeholder="여기에 메모를 작성하세요..."></textarea>
         <div class="font-size-control">
             <button class="font-size-increase">글자크기 증가</button>
             <button class="font-size-decrease">글자크기 감소</button>
         </div>
         <div class="button-container">
-            <button class="header-button">알림장</button>
+            <button class="header-button" onclick="window.location.href='notice.html'">알림장</button>
             <!-- 타이머 페이지로 이동하는 버튼 추가 -->
             <button class="header-button" onclick="window.location.href='timer.html'">타이머</button>
         </div>
