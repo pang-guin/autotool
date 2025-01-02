@@ -1,23 +1,93 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>홈페이지</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Homepage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .header-date {
+            font-size: 140pt;
+        }
+
+        .header-button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .header-button:hover {
+            background-color: #0056b3;
+        }
+
+        .notepad {
+            padding: 20px;
+        }
+
+        .notepad textarea {
+            width: 100%;
+            height: calc(100vh - 200px);
+            font-size: 18px;
+            color: #000;
+            resize: none;
+            outline: none;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const textarea = document.querySelector('.notepad textarea');
+
+            // Load saved content
+            const savedContent = localStorage.getItem('notepadContent');
+            if (savedContent) {
+                textarea.value = savedContent;
+            }
+
+            // Save content automatically
+            textarea.addEventListener('input', () => {
+                localStorage.setItem('notepadContent', textarea.value);
+            });
+
+            // Update date dynamically
+            const dateElement = document.querySelector('.header-date');
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            dateElement.textContent = now.toLocaleDateString('ko-KR', options);
+
+            // Navigation to 알림장 page
+            document.querySelector('.header-button').addEventListener('click', () => {
+                window.location.href = 'notice.html';
+            });
+        });
+    </script>
 </head>
 <body>
-    <header>
-        <div id="date" class="date"></div>
-        <button id="noticeBtn" onclick="location.href='notice.html'">알림장</button>
-    </header>
-    <main>
-        <div id="editor" contenteditable="true"></div>
-        <div id="controls">
-            <input type="number" id="fontSize" min="8" max="72" value="16">
-            <input type="color" id="fontColor" value="#000000">
-        </div>
-    </main>
-    <script src="script.js"></script>
+    <div class="header">
+        <div class="header-date"></div>
+        <button class="header-button">알림장</button>
+    </div>
+    <div class="notepad">
+        <textarea></textarea>
+    </div>
 </body>
 </html>
