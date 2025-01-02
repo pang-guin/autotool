@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.date {
+    font-size: 140pt;
+}
+
+#noticeBtn {
+    font-size: 24px;
+    padding: 10px 20px;
+}
+
+#editor {
+    border: 1px solid #ccc;
+    min-height: 300px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#controls {
+    display: flex;
+    gap: 10px;
+}
