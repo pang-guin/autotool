@@ -13,7 +13,7 @@
         <button class="font-size-increase">△</button>
         <button class="font-size-decrease">▽</button>
     </div>
-    <textarea id="notepad" placeholder="알림장 내용..."></textarea>
+    <div id="notepad" contenteditable="true" class="notepad-textarea" placeholder="알림장 내용..."></div> <!-- contenteditable로 변경 -->
 
     <div class="random-quote">오늘의 안전약속</div>
     <div class="button-container">
@@ -27,6 +27,7 @@
         <button class="header-button" onclick="window.location.href='index.html'">메인</button>
         <button class="header-button" onclick="window.location.href='timer.html'">타이머</button>
     </div>
+</div>
 </div>
 
 <script src="notice-script.js"></script>
