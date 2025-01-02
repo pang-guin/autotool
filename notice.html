@@ -7,14 +7,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="notepad">
-        <textarea placeholder="알림장을 작성하세요..."></textarea>
+<div class="notepad">
         <div class="font-size-control">
-            <button class="font-size-increase">글자크기 증가</button>
-            <button class="font-size-decrease">글자크기 감소</button>
+            <input type="number" id="font-size-input" value="80" min="10" max="100" /> <!-- 숫자 입력 필드 추가 -->
+            <button class="font-size-increase">△</button>
+            <button class="font-size-decrease">▽</button>
         </div>
+        <textarea id="notepad" placeholder="알림장 내용..."></textarea>
+    
+        <div class="random-quote">오늘의 안전약속</div>
+            <div class="button-container">
+            <button class="random-quote-button">안전</button>
+        </div>
+    
+        <div class="button-container">
         <button class="copy">전체 복사</button>
     </div>
+        <div class="button-container">
+            <button class="header-button" onclick="window.location.href='index.html'">메인</button>
+            <button class="header-button" onclick="window.location.href='timer.html'">타이머</button>
+        </div>
     <script src="notice-script.js"></script>
 </body>
 </html>
