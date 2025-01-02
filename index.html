@@ -43,7 +43,7 @@
 
         .notepad textarea {
             width: 100%;
-            height: calc(100vh - 200px);
+            height: calc(100vh - 250px);
             font-size: 18px;
             color: #000;
             resize: none;
@@ -52,10 +52,47 @@
             padding: 10px;
             box-sizing: border-box;
         }
+
+        .font-size-control {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .font-size-control label {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .font-size-control input {
+            width: 50px;
+            padding: 5px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .save-button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .save-button:hover {
+            background-color: #218838;
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const textarea = document.querySelector('.notepad textarea');
+            const fontSizeInput = document.querySelector('#font-size');
+            const saveButton = document.querySelector('.save-button');
 
             // Load saved content
             const savedContent = localStorage.getItem('notepadContent');
@@ -63,9 +100,29 @@
                 textarea.value = savedContent;
             }
 
+            // Load saved font size
+            const savedFontSize = localStorage.getItem('notepadFontSize');
+            if (savedFontSize) {
+                textarea.style.fontSize = `${savedFontSize}px`;
+                fontSizeInput.value = savedFontSize;
+            }
+
             // Save content automatically
             textarea.addEventListener('input', () => {
                 localStorage.setItem('notepadContent', textarea.value);
+            });
+
+            // Update font size
+            fontSizeInput.addEventListener('input', () => {
+                const fontSize = fontSizeInput.value;
+                textarea.style.fontSize = `${fontSize}px`;
+                localStorage.setItem('notepadFontSize', fontSize);
+            });
+
+            // Save content manually
+            saveButton.addEventListener('click', () => {
+                localStorage.setItem('notepadContent', textarea.value);
+                alert('메모가 저장되었습니다!');
             });
 
             // Update date dynamically
@@ -87,7 +144,12 @@
         <button class="header-button">알림장</button>
     </div>
     <div class="notepad">
+        <div class="font-size-control">
+            <label for="font-size">글자 크기:</label>
+            <input type="number" id="font-size" value="18" min="10" max="50">
+        </div>
         <textarea></textarea>
+        <button class="save-button">저장하기</button>
     </div>
 </body>
 </html>
