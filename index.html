@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Homepage with CSV</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,14 +13,31 @@
 
         .header {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             padding: 20px;
             background-color: #f4f4f4;
         }
 
         .header-date {
-            font-size: 80pt;
+            font-size: 80px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: baseline;
+        }
+
+        .header-date .year {
+            font-size: 20px;
+            margin-left: 10px;
+        }
+
+        .random-quote {
+            font-size: 50px;
+            margin-top: 20px;
+            color: #555;
+            text-align: center;
         }
 
         .header-button {
@@ -43,7 +60,7 @@
 
         .notepad textarea {
             width: 100%;
-            height: calc(100vh - 250px);
+            height: calc(100vh - 350px);
             font-size: 18px;
             color: #000;
             resize: none;
@@ -52,84 +69,40 @@
             padding: 10px;
             box-sizing: border-box;
         }
-
-        .font-size-control {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .font-size-control label {
-            margin-right: 10px;
-            font-size: 16px;
-        }
-
-        .font-size-control input {
-            width: 50px;
-            padding: 5px;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        .save-button {
-            display: block;
-            margin: 10px 0;
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .save-button:hover {
-            background-color: #218838;
-        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const textarea = document.querySelector('.notepad textarea');
-            const fontSizeInput = document.querySelector('#font-size');
-            const saveButton = document.querySelector('.save-button');
-
-            // Load saved content
-            const savedContent = localStorage.getItem('notepadContent');
-            if (savedContent) {
-                textarea.value = savedContent;
-            }
-
-            // Load saved font size
-            const savedFontSize = localStorage.getItem('notepadFontSize');
-            if (savedFontSize) {
-                textarea.style.fontSize = `${savedFontSize}px`;
-                fontSizeInput.value = savedFontSize;
-            }
-
-            // Save content automatically
-            textarea.addEventListener('input', () => {
-                localStorage.setItem('notepadContent', textarea.value);
-            });
-
-            // Update font size
-            fontSizeInput.addEventListener('input', () => {
-                const fontSize = fontSizeInput.value;
-                textarea.style.fontSize = `${fontSize}px`;
-                localStorage.setItem('notepadFontSize', fontSize);
-            });
-
-            // Save content manually
-            saveButton.addEventListener('click', () => {
-                localStorage.setItem('notepadContent', textarea.value);
-                alert('메모가 저장되었습니다!');
-            });
+            const dateElement = document.querySelector('.header-date');
+            const randomQuoteElement = document.querySelector('.random-quote');
 
             // Update date dynamically
-            const dateElement = document.querySelector('.header-date');
             const now = new Date();
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            dateElement.textContent = now.toLocaleDateString('ko-KR', options);
+            const options = { weekday: 'long', month: 'long', day: 'numeric' };
+            const year = now.getFullYear();
+            const date = now.toLocaleDateString('ko-KR', options);
+            dateElement.innerHTML = `${date}<span class="year">(${year})</span>`;
+
+            // Fetch random content from CSV
+            function fetchRandomQuote() {
+                fetch('daily.csv') // Replace 'daily.csv' with your CSV file path
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(csvText => {
+                        const lines = csvText.split('\n').map(line => line.trim()).filter(line => line);
+                        const randomQuote = lines[Math.floor(Math.random() * lines.length)];
+                        randomQuoteElement.textContent = randomQuote.replace(/"/g, '');
+                    })
+                    .catch(error => {
+                        console.error('Error fetching CSV:', error);
+                        randomQuoteElement.textContent = '데이터를 불러오는 중 오류가 발생했습니다.';
+                    });
+            }
+
+            fetchRandomQuote();
 
             // Navigation to 알림장 page
             document.querySelector('.header-button').addEventListener('click', () => {
@@ -141,15 +114,11 @@
 <body>
     <div class="header">
         <div class="header-date"></div>
+        <div class="random-quote">로딩 중...</div>
         <button class="header-button">알림장</button>
     </div>
     <div class="notepad">
-        <div class="font-size-control">
-            <label for="font-size">글자 크기:</label>
-            <input type="number" id="font-size" value="18" min="10" max="50">
-        </div>
-        <textarea></textarea>
-        <button class="save-button">저장하기</button>
+        <textarea placeholder="여기에 메모를 작성하세요..."></textarea>
     </div>
 </body>
 </html>
