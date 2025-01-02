@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홈페이지</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div id="date" class="date"></div>
+        <button id="noticeBtn" onclick="location.href='notice.html'">알림장</button>
+    </header>
+    <main>
+        <div id="editor" contenteditable="true"></div>
+        <div id="controls">
+            <input type="number" id="fontSize" min="8" max="72" value="16">
+            <input type="color" id="fontColor" value="#000000">
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
