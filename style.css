@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.header-date {
+    font-size: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.header-date .year {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.random-quote {
+    font-size: 50px;
+    margin-top: 20px;
+    color: #555;
+    text-align: center;
+}
+
+.header-button {
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.header-button:hover {
+    background-color: #0056b3;
+}
+
+.notepad {
+    padding: 20px;
+}
+
+.notepad textarea {
+    width: 100%;
+    height: calc(100vh - 350px);
+    font-size: 18px;
+    color: #000;
+    resize: none;
+    outline: none;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.font-size-control {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.font-size-control button {
+    margin: 0 5px;
+    font-size: 16px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.timer {
+    font-size: 140px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.timer-controls button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.timer-controls button:hover {
+    background-color: #218838;
+}
+
+.copy {
+    margin-top: 20px;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.copy:hover {
+    background-color: #218838;
+}
